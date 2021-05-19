@@ -36,6 +36,9 @@ public class Fee {
 	
 	@Column(name = "active")
 	private boolean active;
+	
+	public Fee() {
+	}
 
 	public Fee(Long id, String feeName, String periodicity, boolean fineApplicable, boolean concessionApplicable,
 			boolean refundable, String accountHead, boolean active) {
@@ -111,6 +114,13 @@ public class Fee {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	@Override
+	public String toString() {
+		return "Fee [feeName=" + feeName + ", periodicity=" + periodicity + ", fineApplicable=" + fineApplicable
+				+ ", concessionApplicable=" + concessionApplicable + ", refundable=" + refundable + ", accountHead="
+				+ accountHead + ", active=" + active + "]";
 	}
 
 }
