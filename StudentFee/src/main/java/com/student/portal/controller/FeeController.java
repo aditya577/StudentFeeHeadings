@@ -24,11 +24,18 @@ public class FeeController {
 	@Autowired
 	private FeeService service;
 	
-	@RequestMapping(value = "/")
-	public String home(Model map) {
-		map.addAttribute("message", "You landed here");
-		map.addAttribute("title","Student Fee | Index");
-		return "welcome";
+//	@RequestMapping(value = "/")
+//	public String home(Model map) {
+//		map.addAttribute("message", "You landed here");
+//		map.addAttribute("title","Student Fee | Index");
+//		return "welcome";
+//	}
+	
+	@GetMapping(value = "/")
+	public String getAll(Model map){
+		List<Fee> feeList = service.getAllFees();
+	    map.addAttribute("lists", feeList);
+	    return "data";
 	}
 
 	@RequestMapping(value = "/home")
@@ -49,13 +56,6 @@ public class FeeController {
 	public List<Fee> saveFeeList(@RequestBody List<Fee> fees) {
 		return service.saveFeeList(fees);
 	} 
-	
-	@GetMapping(value = "/get/fees")
-	public String getAll(Model map){
-		List<Fee> feeList = service.getAllFees();
-	    map.addAttribute("lists", feeList);
-	    return "data";
-	}
 	
 	@GetMapping(value = "/get/fee/id/{id}")
 	@ResponseBody
